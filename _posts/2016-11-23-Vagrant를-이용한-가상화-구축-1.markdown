@@ -22,7 +22,6 @@ $ sudo apt-get install apache2
 $ sudo apache2ctl configtest
 $ sudo systemctl status apache2
 $ sudo systemctl restart apache2
-
 ```
 
 Mysql, PHP
@@ -67,7 +66,6 @@ $ sudo ufw status verbose
 $ sudo ufw allow 22
 $ sudo ufw allow 80
 $ sudo ufw allow 3306
-
 ```
 
 #### <a name="fenced-code-block">서버확인</a>
