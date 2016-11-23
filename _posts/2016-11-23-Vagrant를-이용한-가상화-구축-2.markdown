@@ -25,12 +25,12 @@ $ vagrant ssh
 
 <br>
 ---
-#### <span style="color:orange;">### Important</span>
+### <span style="color:orange;">### Important</span>
 
 [Vagrant Box로 만들기 이전에 항상 체크 해야 할 사항]
 (https://www.vagrantup.com/docs/boxes/base.html)
 
-##### "vagrant" User, Root Password: "vagrant", Password-less Sudo 부분을 꼭 확인
+### "vagrant" User, Root Password: "vagrant", Password-less Sudo 부분을 꼭 확인
 
 [best way add nopasswd vagrant user](http://askubuntu.com/questions/406787/best-way-add-nopasswd-vagrant-user)
 
@@ -38,7 +38,7 @@ $ vagrant ssh
 $ sudo echo vagrant ALL=NOPASSWD:ALL > /etc/sudoers.d/vagrant
 ```
 
-####[docker vagrant](https://hub.docker.com/r/nineseconds/docker-vagrant/) 
+[docker 사용시 꼭 확인](https://hub.docker.com/r/nineseconds/docker-vagrant/) 
 
 ---
 <br>
