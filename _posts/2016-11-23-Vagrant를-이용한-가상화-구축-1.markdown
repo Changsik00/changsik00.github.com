@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 ## Vagrant를 이용한 가상화 구축
 
 
