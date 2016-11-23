@@ -1,0 +1,77 @@
+---
+layout: default
+---
+
+## Vagrant를 이용한 가상화 구축
+
+
+### 1. VirtaulBox에 LAMP 설치하기
+
+Ubuntu Essential
+
+```
+$ sudo apt-get update
+$ sudo apt-get install build-essential checkinstall
+$ sudo apt-get install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
+```
+
+Apache2 Set Global ServerName to Suppress Syntax Warnings
+
+```
+$ sudo apt-get install apache2 
+$ sudo apache2ctl configtest
+$ sudo systemctl status apache2
+$ sudo systemctl restart apache2
+```
+
+Mysql, PHP
+
+```
+sudo apt-get install mysql-server
+sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql php-cli
+```
+
+Install PHP Modules
+
+```
+$ apt-cache search php- | less
+
+libnet-libidn-perl - Perl bindings for GNU Libidn
+php-all-dev - package depending on all supported PHP development packages
+php-cgi - server-side, HTML-embedded scripting language (CGI binary) (default)
+php-cli - command-line interpreter for the PHP scripting language (default)
+php-common - Common files for PHP packages
+php-curl - CURL module for PHP [default]
+php-dev - Files for PHP module development (default)
+php-gd - GD module for PHP [default]
+php-gmp - GMP module for PHP [default]
+:
+```
+
+Test PHP Web Server
+
+```
+sudo vi /var/www/html/info.php
+```
+```php
+<?php
+	phpinfo();
+?>
+```
+
+#### Port Arrow
+```
+$ sudo ufw enable
+$ sudo ufw status verbose
+$ sudo ufw allow 22
+$ sudo ufw allow 80
+$ sudo ufw allow 3306
+```
+
+#### <a name="fenced-code-block">서버확인</a>
+http://***your_server_IP_address***/info.php
+
+
+#### Config or Init
+> * /etc/apache2/apache2.conf
+
