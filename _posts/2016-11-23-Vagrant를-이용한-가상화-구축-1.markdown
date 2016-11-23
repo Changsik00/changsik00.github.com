@@ -5,62 +5,73 @@ layout: default
 ## Vagrant를 이용한 가상화 구축
 
 
-### 2. Vagrant Down 및 설치
+### 1. VirtaulBox에 LAMP 설치하기
 
-[Vagrant down](https://www.vagrantup.com/downloads.html) 
-> * 현재 맥에서 1.8.7 버전은 문제가 발생되어 1.8.6으로 사용하고 있음
-> * Ruby 2.2.5 사용중 / 영향이 있는지 확인 해야 함 
-
-
-
-<br>
-Vagrant UP AND RUNNING 으로 세팅 확인 (왠만하면 생략)
+Ubuntu Essential
 
 ```
-$ vagrant init hashicorp/precise64
-$ vagrant up
-$ vagrant ssh-config
-$ vagrant ssh
+$ sudo apt-get update
+$ sudo apt-get install build-essential checkinstall
+$ sudo apt-get install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
 ```
 
-<br>
----
-#### <span style="color:orange;">### Important</span>
-
-[Vagrant Box로 만들기 이전에 항상 체크 해야 할 사항]
-(https://www.vagrantup.com/docs/boxes/base.html)
-
-##### "vagrant" User, Root Password: "vagrant", Password-less Sudo 부분을 꼭 확인
-
-[best way add nopasswd vagrant user](http://askubuntu.com/questions/406787/best-way-add-nopasswd-vagrant-user)
+Apache2 Set Global ServerName to Suppress Syntax Warnings
 
 ```
-$ sudo echo vagrant ALL=NOPASSWD:ALL > /etc/sudoers.d/vagrant
+$ sudo apt-get install apache2 
+$ sudo apache2ctl configtest
+$ sudo systemctl status apache2
+$ sudo systemctl restart apache2
 ```
 
-####[docker vagrant](https://hub.docker.com/r/nineseconds/docker-vagrant/) 
-
----
-<br>
-### 3. Vagrant Box Image 만들기
-
-VirtualBox Image List 조회
+Mysql, PHP
 
 ```
-& sudo vboxmanage list vms
-
---ex--
-"Samsung Galaxy S4 - 4.3 - API 18 - 1080x1920" {8349394c-d8c9-41d5-bfa9-7573ba44a43b}
-"Samsung Galaxy S6 - 5.1.0 - API 22 - 1440x2560" {595c3d3c-0729-4e12-8853-6f16b537f5f5}
-"lowmans-ubuntu" {0a99a907-4e8e-49ab-8c8f-dfaa720f9cd1}
-"Windows" {2ad05c95-f214-46d9-9be7-e1dae9bdd8b1}
+sudo apt-get install mysql-server
+sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql php-cli
 ```
 
-VirtualBox Image To Vagrant Box
-```
-vagrant box add --name <원하는 virtualbox> <새로 만들어질 vagrant box>
-```
+Install PHP Modules
 
 ```
-& sudo agrant box add --name lowmans-ubuntu vagrant-ubuntu
+$ apt-cache search php- | less
+
+libnet-libidn-perl - Perl bindings for GNU Libidn
+php-all-dev - package depending on all supported PHP development packages
+php-cgi - server-side, HTML-embedded scripting language (CGI binary) (default)
+php-cli - command-line interpreter for the PHP scripting language (default)
+php-common - Common files for PHP packages
+php-curl - CURL module for PHP [default]
+php-dev - Files for PHP module development (default)
+php-gd - GD module for PHP [default]
+php-gmp - GMP module for PHP [default]
+:
 ```
+
+Test PHP Web Server
+
+```
+sudo vi /var/www/html/info.php
+```
+```php
+<?php
+	phpinfo();
+?>
+```
+
+#### Port Arrow
+```
+$ sudo ufw enable
+$ sudo ufw status verbose
+$ sudo ufw allow 22
+$ sudo ufw allow 80
+$ sudo ufw allow 3306
+```
+
+#### <a name="fenced-code-block">서버확인</a>
+http://***your_server_IP_address***/info.php
+
+
+#### Config or Init
+> * /etc/apache2/apache2.conf
+
