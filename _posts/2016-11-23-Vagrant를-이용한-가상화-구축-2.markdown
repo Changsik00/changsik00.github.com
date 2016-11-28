@@ -25,7 +25,7 @@ $ vagrant ssh
 
 
 ---
-### <span style="color:orange;">### Important</span>
+<span style="color:orange;">### Important</span>
 
 [Vagrant Box로 만들기 이전에 항상 체크 해야 할 사항]
 (https://www.vagrantup.com/docs/boxes/base.html)
@@ -47,7 +47,7 @@ $ sudo echo vagrant ALL=NOPASSWD:ALL > /etc/sudoers.d/vagrant
 VirtualBox Image List 조회
 
 ```
-& sudo vboxmanage list vms
+$ sudo vboxmanage list vms
 
 --ex--
 "Samsung Galaxy S4 - 4.3 - API 18 - 1080x1920" {8349394c-d8c9-41d5-bfa9-7573ba44a43b}
@@ -56,11 +56,34 @@ VirtualBox Image List 조회
 "Windows" {2ad05c95-f214-46d9-9be7-e1dae9bdd8b1}
 ```
 
+<br>
 VirtualBox Image To Vagrant Box
-```
-vagrant box add --name <원하는 virtualbox> <새로 만들어질 vagrant box>
-```
 
 ```
-& sudo agrant box add --name lowmans-ubuntu vagrant-ubuntu
+vagrant package --base <virtualbox list name> --output <새로 만들어질 vagrant box>
+```
+
+<br>
+주로 사용하는 Command
+
+```
+vagrant box add --name <원하는 이름> <box path>
+
+vagrant init <원하는 이름>
+
+VagrantFile 수정 
+
+vagrant up --provision
+
+vagrant ssh-config
+
+vagrant ssh
+
+vagrant halt
+
+vagrant destroy
+
+vagrant box list
+
+vagrant box remve <box name>
 ```
