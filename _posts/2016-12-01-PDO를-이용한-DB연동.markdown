@@ -55,5 +55,14 @@ prepare를 통한 파라미터 바인딩의 장점은  ***mysql_real_escape_stri
 
 * PDO::FETCH_OBJ: 결과에서 반환되는 열 이름을 프로퍼티 이름으로 익명 객체를 반환한다. id라는 열을 가지고 있다면 $row->id
 
-* PDO::FETCH_CLASS: 명시한 클래스 프로퍼티와 결과에서 반환되는 열 이름을 맵핑한 객체를 반환한다. $row->id
+* PDO::FETCH_CLASS: 명시한 클래스 프로퍼티와 결과에서 반환되는 열 이름을 맵핑한 객체를 반환한다.<br>$row->id
 
+
+## 참고사이트 
+[POD Connections](http://php.net/manual/en/pdo.connections.php)
+
+<http://pamooochim.blogspot.kr/2016/01/pdo-php.html>
+
+<http://hackbyr0k.tistory.com/2>
+
+<https://www.lesstif.com/pages/viewpage.action?pageId=24445746>
