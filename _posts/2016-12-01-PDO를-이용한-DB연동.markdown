@@ -2,14 +2,14 @@
 layout: deault
 ---
 
-## POD를 사용한 DB 연동 
+## PDO를 사용한 DB 연동 
 
 * ***mysql*** 확장 기능은 마침내 PHP 7에서 제거
 * mysql 대신에 ***mysqli*** 함수로 변경 해야 함
-* 이왕 바꿀거 POD 로 바꾸자~!!
+* 이왕 바꿀거 PDO 로 바꾸자~!!
 
 
-### POD 장점중 큰 특징
+### PDO 장점중 큰 특징
 
 * mysql_connect 혹은 mysqli_connect를 pg_connect로 변환하는 작업이 쉽다.
 * 파라미터를 바인딩 할 수 있다
