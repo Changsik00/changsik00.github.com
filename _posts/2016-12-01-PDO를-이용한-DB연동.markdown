@@ -1,0 +1,59 @@
+---
+layout: deault
+---
+
+## POD를 사용한 DB 연동 
+
+* ***mysql*** 확장 기능은 마침내 PHP 7에서 제거
+* mysql 대신에 ***mysqli*** 함수로 변경 해야 함
+* 이왕 바꿀거 POD 로 바꾸자~!!
+
+
+### POD 장점중 큰 특징
+
+* mysql_connect 혹은 mysqli_connect를 pg_connect로 변환하는 작업이 쉽다.
+* 파라미터를 바인딩 할 수 있다
+* 여러분은 객체로 데이터를 생성할 수 있다.
+* 성능과 보안이 더 좋다
+
+
+ 
+### query vs prepare
+
+[stackoverflow에 누군가 질문한 글](http://stackoverflow.com/questions/4700623/pdos-query-vs-execute)
+
+```
+$statement = $connection->query('SELECT * FROM users');
+
+
+
+$statement = $connection->prepare('Select * From users Where id = :id');
+$id = 5;
+$statement->execute([
+    ':id' => $id
+]);
+$results = $statement->fetchAll(PDO::FETCH_OBJ);
+```
+
+$statement->query() : PDO는 내부로 구문을 준비하고 실행하고 결과를 반환한다.
+
+$connection->prepare() :  데이터베이스 관리 시스템을 제어할 수 있는 Statement을 생성하고 반환한다.
+
+$statement->execute() : 플레이스 홀더를 위해 값을 넘기고 데이터베이스 관리 시스템에게 실제로 쿼리를 실행하라고 전달한다.
+
+prepare를 통한 파라미터 바인딩의 장점은  ***mysql_real_escape_string*** 와 같은 이스케이프하고 쿼팅하는 작업을
+할 필요가 없다.
+
+
+### fetch_style
+
+[php 공식문서](http://php.net/manual/kr/pdostatement.fetch.php)
+
+* PDO::FETCH_ASSOC: 열 이름으로 인덱스된 배열(key-value 형태)을 반환한다. $row['id']
+
+* PDO::FETCH_NUM: 열 숫자로 인덱스된 배열을 반환한다. $row[0]
+
+* PDO::FETCH_OBJ: 결과에서 반환되는 열 이름을 프로퍼티 이름으로 익명 객체를 반환한다. id라는 열을 가지고 있다면 $row->id
+
+* PDO::FETCH_CLASS: 명시한 클래스 프로퍼티와 결과에서 반환되는 열 이름을 맵핑한 객체를 반환한다. $row->id
+
