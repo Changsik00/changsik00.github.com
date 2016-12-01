@@ -23,6 +23,8 @@ github_username: Changsik00
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
+
 theme: minima
 gems:
   - jekyll-feed
